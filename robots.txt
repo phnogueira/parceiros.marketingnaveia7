@@ -1,0 +1,44 @@
+# Configurações para todos os robôs de busca
+User-agent: *
+
+# Permitir acesso a todas as páginas públicas
+Allow: /
+Allow: /index.html
+Allow: /bem-estar.html
+Allow: /produtos-saude.html
+Allow: /images/
+Allow: /styles.css
+
+# Bloquear acesso a áreas administrativas e arquivos sensíveis
+Disallow: /admin/
+Disallow: /config/
+Disallow: /.env
+Disallow: /.htaccess
+Disallow: /cgi-bin/
+Disallow: /includes/
+Disallow: /tmp/
+Disallow: /logs/
+
+# Bloquear arquivos específicos
+Disallow: /*.php$
+Disallow: /*.sql$
+Disallow: /*.log$
+Disallow: /*.txt$
+
+# Sitemap
+Sitemap: https://parceiros.marketingnaveia7.com/sitemap.xml
+
+# Taxa de rastreamento
+Crawl-delay: 10
+
+# Regras específicas para bots principais
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+User-agent: YandexBot
+Disallow: / 

@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Produtos naturais para sua saúde e bem-estar">
+    <meta name="keywords" content="vitaminas, suplementos, saúde natural">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Seu Nome">
+    <title>Produtos para Saúde e Bem-estar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d7e3ec 100%);
+            min-height: 100vh;
+            padding-top: 90px;
+        }
+
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .banner h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .produto {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            max-height: 600px;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .produto:hover {
+            transform: translateY(-10px);
+        }
+
+        .produto-imagem {
+            position: relative;
+            padding-top: 65%;
+            overflow: hidden;
+            max-height: 250px;
+        }
+
+        .produto-imagem img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            padding: 20px;
+            cursor: zoom-in;
+        }
+
+        .produto:hover .produto-imagem img {
+            transform: scale(1.1);
+        }
+
+        .produto-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .produto-categoria {
+            color: #fff;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px rgba(46, 204, 113, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .produto-categoria::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            to {
+                left: 100%;
+            }
+        }
+
+        .produto-titulo {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .produto-preco-container {
+            width: 100%;
+            max-width: 280px;
+            margin: 15px auto;
+            text-align: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .produto-parcela {
+            color: #666;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+            text-align: center;
+            order: -1;
+        }
+
+        .produto-preco {
+            font-size: 1.6em;
+            color: #2ecc71;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .btn-comprar-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .btn-comprar {
+            display: block;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto;
+            font-size: 0.9em;
+        }
+
+        .btn-comprar:hover {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .produtos {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .banner h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .categoria-header {
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+
+            .categoria-titulo {
+                font-size: 1.8em;
+            }
+
+            .categoria-produtos {
+                padding: 40px 0;
+                margin: 20px 0;
+                border-radius: 20px;
+            }
+
+            .produtos {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .produto {
+                max-height: none;
+                padding-bottom: 70px;
+            }
+
+            .btn-comprar {
+                padding: 10px 20px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* Novo estilo para os benefícios */
+        .beneficios {
+            width: 100%;
+            max-width: 280px;
+            margin: 15px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .beneficio-item {
+            font-size: 0.75em;
+            color: #666;
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .beneficio-item i {
+            color: #2ecc71;
+            font-size: 1.1em;
+        }
+
+        /* Estilo para preço à vista */
+        .preco-avista {
+            font-size: 0.75em;
+            color: #666;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        .preco-avista strong {
+            color: #2ecc71;
+        }
+
+        /* Estilo para o modal de zoom */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            cursor: zoom-out;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        /* Estilo para seção de benefícios */
+        .beneficios-section {
+            background: white;
+            padding: 50px 0;
+            margin-top: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .beneficio-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            transition: transform 0.3s ease;
+        }
+
+        .beneficio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .beneficio-icon {
+            font-size: 2.5em;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        .beneficio-titulo {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .beneficio-descricao {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        /* Estilo para o banner de resultados */
+        .resultados-banner {
+            background: white;
+            padding: 40px 0;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .resultados-titulo {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .resultados-titulo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            border-radius: 2px;
+        }
+
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .resultado-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 350px;
+        }
+
+        .resultado-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resultado-imagem {
+            position: relative;
+            padding-top: 100%;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .resultado-imagem img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            padding: 10px;
+        }
+
+        .resultado-info {
+            padding: 15px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .resultado-tempo {
+            color: #2ecc71;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .resultado-descricao {
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Estilo para divisor de seções */
+        .section-divider {
+            text-align: center;
+            padding: 50px 0 30px;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d7e3ec 100%);
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Estilo para categorias de produtos */
+        .categoria-produtos {
+            padding: 60px 0;
+            margin: 30px 0;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+
+        .categoria-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid #eee;
+        }
+
+        .categoria-titulo {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .categoria-titulo::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            border-radius: 2px;
+        }
+
+        .categoria-descricao {
+            color: #666;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Estilo para o topo com logotipo */
+        .top-bar {
+            background: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-image {
+            max-height: 80px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-size: 1.2em;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .top-bar-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .contact-item i {
+            color: #2ecc71;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-contact {
+                display: none;
+            }
+
+            .logo-container {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="logo-container">
+                <img src="Marketing na veia 7 copiar.png" alt="Logo da Empresa" class="logo-image">
+                <span class="logo-text">Marketing na Veia</span>
+            </div>
+            <div class="top-bar-contact">
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>(11) 99605-7704</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>marketingnaveia07@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner">
+        <h1>Produtos Naturais para sua Saúde</h1>
+        <p>Descubra o melhor da natureza para seu bem-estar</p>
+        <p class="banner-cta">Aproveite as ofertas especiais!</p>
+    </div>
+
+    <div class="container">
+        <div class="produtos">
+            <div class="produto">
+                <div class="produto-imagem">
+                    <img src="https://fiodex.com.br/wp-content/webp-express/webp-images/uploads/2022/06/mokup-1211x1536.png.webp"
+                        alt="Produto 1" loading="lazy">
+                </div>
+                <div class="produto-info">
+                    <div class="produto-categoria">FioDex</div>
+                    <h3 class="produto-titulo">Reativação Capilar</h3>
+                    <div class="produto-preco-container">
+                        <div class="produto-parcela">12x sem juros de</div>
+                        <div class="produto-preco">R$ 89,90</div>
+                        <div class="preco-avista">ou <strong>R$ 197,00</strong> à vista</div>
+                    </div>
+
+                    <!-- Adicionando benefícios -->
+                    <div class="beneficios">
+                        <div class="beneficio-item">
+                            <i class="fas fa-truck"></i>
+                            Frete Grátis
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-shield-alt"></i>
+                            Compra Segura
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-lock"></i>
+                            Dados Protegidos
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-check-circle"></i>
+                            100% Confiável
+                        </div>
+                    </div>
+
+                    <div class="btn-comprar-wrapper">
+                        <a href="https://go.hotmart.com/E98141005W?dp=1" class="btn-comprar">Comprar Agora</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produto">
+                <div class="produto-imagem">
+                    <img src="https://amazonicarosa.com.br/wp-content/uploads/2024/03/RosaAmz.webp" alt="Produto 2"
+                        loading="lazy">
+                </div>
+                <div class="produto-info">
+                    <div class="produto-categoria">Rosa Amazônica</div>
+                    <h3 class="produto-titulo">Saúde, Bem-estar e Beleza</h3>
+                    <div class="produto-preco-container">
+                        <div class="produto-parcela">12x sem juros de</div>
+                        <div class="produto-preco">R$ 19,77</div>
+                        <div class="preco-avista">ou <strong>R$ 197,00</strong> à vista</div>
+                    </div>
+
+                    <!-- Adicionando benefícios -->
+                    <div class="beneficios">
+                        <div class="beneficio-item">
+                            <i class="fas fa-truck"></i>
+                            Frete Grátis
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-shield-alt"></i>
+                            Compra Segura
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-lock"></i>
+                            Dados Protegidos
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-check-circle"></i>
+                            100% Confiável
+                        </div>
+                    </div>
+
+                    <div class="btn-comprar-wrapper">
+                        <a href="https://app.keedpay.com.br/link/nxUtI@FyIFz/IDpmGXQr8lN" class="btn-comprar">
+                            Comprar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produto">
+                <div class="produto-imagem">
+                    <img src="https://hotmart.s3.amazonaws.com/product_pictures/6a01cc93-c8a9-461e-9073-87d1b0b93f90/WhatsAppImage20241120at175816.png"
+                        alt="Produto 3" loading="lazy">
+                </div>
+                <div class="produto-info">
+                    <div class="produto-categoria">Curcuma</div>
+                    <h3 class="produto-titulo">Com pimenta preta</h3>
+                    <div class="produto-preco-container">
+                        <div class="produto-parcela">Entrada R$ 26,03 + 10x</div>
+                        <div class="produto-preco">R$ 11,77</div>
+                        <div class="preco-avista">ou <strong>R$ 127,00</strong> à vista</div>
+                    </div>
+
+                    <!-- Benefícios -->
+                    <div class="beneficios">
+                        <div class="beneficio-item">
+                            <i class="fas fa-truck"></i>
+                            Frete Grátis
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-shield-alt"></i>
+                            Compra Segura
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-lock"></i>
+                            Dados Protegidos
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-check-circle"></i>
+                            100% Confiável
+                        </div>
+                    </div>
+
+                    <div class="btn-comprar-wrapper">
+                        <a href="https://go.hotmart.com/M98145629W?ap=5b51" class="btn-comprar">
+                            Comprar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="produto">
+                <div class="produto-imagem">
+                    <img src="https://renovagold.lojaoficialbrasil.com.br/wp-content/uploads/2024/12/WhatsApp_Image_2024-09-07_at_17.11.41-removebg-preview.png"
+                        alt="Produto 4" loading="lazy">
+                </div>
+                <div class="produto-info">
+                    <div class="produto-categoria">Renova Gold</div>
+                    <h3 class="produto-titulo">Tecnologia Americana</h3>
+                    <div class="produto-preco-container">
+                        <div class="produto-parcela">12x sem juros de</div>
+                        <div class="produto-preco">R$ 16,42,</div>
+                        <div class="preco-avista">ou <strong>R$ 197,00</strong> à vista</div>
+                    </div>
+
+                    <!-- Benefícios -->
+                    <div class="beneficios">
+                        <div class="beneficio-item">
+                            <i class="fas fa-truck"></i>
+                            Frete Grátis
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-shield-alt"></i>
+                            Compra Segura
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-lock"></i>
+                            Dados Protegidos
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-check-circle"></i>
+                            100% Confiável
+                        </div>
+                    </div>
+
+                    <div class="btn-comprar-wrapper">
+                        <a href="https://app.keedpay.com.br/checkout/MLgfVuf6GMI/MI8R6qasuRX" class="btn-comprar">
+                            Comprar Agora
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5511996057704" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // JavaScript para o modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementsByClassName('close-modal')[0];
+
+        // Adicionar evento de clique em todas as imagens de produtos
+        document.querySelectorAll('.produto-imagem img').forEach(img => {
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+
+        // Fechar modal ao clicar no X
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Fechar modal ao clicar fora da imagem
+        modal.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+
+    <!-- Nova seção de benefícios -->
+    <div class="beneficios-section">
+        <div class="beneficios-grid">
+            <!-- FioDex -->
+            <div class="beneficio-card">
+                <div class="beneficio-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="beneficio-titulo">Tratamento Capilar</h3>
+                <p class="beneficio-descricao">Combate a queda de cabelo, estimula o crescimento e fortalece os fios
+                    desde a raiz. Resultados visíveis em poucas semanas.</p>
+            </div>
+
+            <!-- Rosa Amazônica -->
+            <div class="beneficio-card">
+                <div class="beneficio-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3 class="beneficio-titulo">Beleza Natural</h3>
+                <p class="beneficio-descricao">Extratos naturais da Amazônia que promovem rejuvenescimento, hidratação
+                    profunda e redução de manchas na pele.</p>
+            </div>
+
+            <!-- Curcuma -->
+            <div class="beneficio-card">
+                <div class="beneficio-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3 class="beneficio-titulo">Anti-inflamatório Natural</h3>
+                <p class="beneficio-descricao">Combinação potente de curcuma com pimenta preta que aumenta a absorção e
+                    potencializa os benefícios anti-inflamatórios.</p>
+            </div>
+
+            <!-- Renova Gold -->
+            <div class="beneficio-card">
+                <div class="beneficio-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <h3 class="beneficio-titulo">Tecnologia Avançada</h3>
+                <p class="beneficio-descricao">Fórmula americana exclusiva que atua no rejuvenescimento celular,
+                    combatendo os sinais do envelhecimento de dentro para fora.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicionar antes da seção de benefícios -->
+    <div class="resultados-banner">
+        <h2 class="resultados-titulo">Resultados Reais</h2>
+        <div class="resultados-grid">
+            <!-- FioDex -->
+            <div class="resultado-card">
+                <div class="resultado-imagem">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn6QdT54flIS4I_xSAczt6vaf2YRtqx_XiKg&s"
+                        alt="Resultado FioDex" loading="lazy">
+                </div>
+                <div class="resultado-info">
+                    <div class="resultado-tempo">90 dias de uso</div>
+                    <p class="resultado-descricao">Crescimento acelerado e fortalecimento dos fios com FioDex</p>
+                </div>
+            </div>
+
+            <!-- Rosa Amazônica -->
+            <div class="resultado-card">
+                <div class="resultado-imagem">
+                    <img src="https://amazonicarosa.com.br/wp-content/uploads/2023/02/antes-e-depois.webp"
+                        alt="Resultado Rosa Amazônica" loading="lazy">
+                </div>
+                <div class="resultado-info">
+                    <div class="resultado-tempo">30 dias de uso</div>
+                    <p class="resultado-descricao">Redução de rugas e manchas com Rosa Amazônica</p>
+                </div>
+            </div>
+
+            <!-- Curcuma -->
+            <div class="resultado-card">
+                <div class="resultado-imagem">
+                    <img src="https://cdn.sistemawbuy.com.br/arquivos/125c70e600ba1edc806206e03c367c67/blogitens/chas-temperos-suplementos-organicos-naturais,image10281442-451.jpg"
+                        alt="Resultado Curcuma" loading="lazy">
+                </div>
+                <div class="resultado-info">
+                    <div class="resultado-tempo">21 dias de uso</div>
+                    <p class="resultado-descricao">Redução de inflamações e dores articulares com Curcuma + Pimenta
+                        Preta</p>
+                </div>
+            </div>
+
+            <!-- Renova Gold -->
+            <div class="resultado-card">
+                <div class="resultado-imagem">
+                    <img src="https://renovagold.lojaoficialbrasil.com.br/wp-content/uploads/2024/12/Imagem-do-WhatsApp-de-2024-12-14-as-11.58.14_460aa162.jpg"
+                        alt="Resultado Renova Gold" loading="lazy">
+                </div>
+                <div class="resultado-info">
+                    <div class="resultado-tempo">90 dias de uso</div>
+                    <p class="resultado-descricao">Rejuvenescimento completo e redução de flacidez com Renova Gold</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Adicionar após a seção de resultados -->
+    <div class="section-divider">
+        <h2 class="section-title">Mais Produtos para Sua Saúde</h2>
+        <p class="section-subtitle">Descubra nossa linha completa de produtos naturais</p>
+    </div>
+
+    <!-- Categoria: Suplementos para Imunidade -->
+    <section class="categoria-produtos">
+        <div class="container">
+            <div class="categoria-header">
+                <h3 class="categoria-titulo">Suplementos para Imunidade</h3>
+                <p class="categoria-descricao">Fortaleça seu sistema imunológico naturalmente</p>
+            </div>
+            <div class="produtos">
+                <!-- Própolis -->
+                <div class="produto">
+                    <div class="produto-imagem">
+                        <img src="https://vivernatural.com.br/wp-content/uploads/2023/12/Mockup-Viver-Natural-Propolis-1.png"
+                            alt="Própolis Verde" loading="lazy">
+                    </div>
+                    <div class="produto-info">
+                        <div class="produto-categoria">Própolis Verde</div>
+                        <h3 class="produto-titulo">Extrato de Própolis</h3>
+                        <div class="produto-preco-container">
+                            <div class="produto-parcela">12x sem juros de</div>
+                            <div class="produto-preco">R$ 12,42</div>
+                            <div class="preco-avista">ou <strong>R$ 149,00</strong> à vista</div>
+                        </div>
+                        <div class="beneficios">
+                            <div class="beneficio-item">
+                                <i class="fas fa-truck"></i>
+                                Frete Grátis
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Compra Segura
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-lock"></i>
+                                Dados Protegidos
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-check-circle"></i>
+                                100% Confiável
+                            </div>
+                        </div>
+                        <div class="btn-comprar-wrapper">
+                            <a href="https://app.keedpay.com.br/link/propolis" class="btn-comprar">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vitamina C -->
+                <div class="produto">
+                    <div class="produto-imagem">
+                        <img src="https://vivernatural.com.br/wp-content/uploads/2023/12/Mockup-Viver-Natural-VitaminaC-1.png"
+                            alt="Vitamina C" loading="lazy">
+                    </div>
+                    <div class="produto-info">
+                        <div class="produto-categoria">Vitamina C</div>
+                        <h3 class="produto-titulo">Imunidade Diária</h3>
+                        <div class="produto-preco-container">
+                            <div class="produto-parcela">12x sem juros de</div>
+                            <div class="produto-preco">R$ 13,25</div>
+                            <div class="preco-avista">ou <strong>R$ 159,00</strong> à vista</div>
+                        </div>
+                        <div class="beneficios">
+                            <div class="beneficio-item">
+                                <i class="fas fa-truck"></i>
+                                Frete Grátis
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Compra Segura
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-lock"></i>
+                                Dados Protegidos
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-check-circle"></i>
+                                100% Confiável
+                            </div>
+                        </div>
+                        <div class="btn-comprar-wrapper">
+                            <a href="https://app.keedpay.com.br/link/vitaminac" class="btn-comprar">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categoria: Saúde Digestiva -->
+    <section class="categoria-produtos" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="categoria-header">
+                <h3 class="categoria-titulo">Saúde Digestiva</h3>
+                <p class="categoria-descricao">Produtos naturais para um sistema digestivo saudável</p>
+            </div>
+            <div class="produtos">
+                <!-- Probiótico -->
+                <div class="produto">
+                    <div class="produto-imagem">
+                        <img src="https://vivernatural.com.br/wp-content/uploads/2023/12/Mockup-Viver-Natural-Probiotico-1.png"
+                            alt="Probiótico Natural" loading="lazy">
+                    </div>
+                    <div class="produto-info">
+                        <div class="produto-categoria">Probiótico</div>
+                        <h3 class="produto-titulo">Saúde Intestinal</h3>
+                        <div class="produto-preco-container">
+                            <div class="produto-parcela">12x sem juros de</div>
+                            <div class="produto-preco">R$ 13,25</div>
+                            <div class="preco-avista">ou <strong>R$ 159,00</strong> à vista</div>
+                        </div>
+                        <div class="beneficios">
+                            <div class="beneficio-item">
+                                <i class="fas fa-truck"></i>
+                                Frete Grátis
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Compra Segura
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-lock"></i>
+                                Dados Protegidos
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-check-circle"></i>
+                                100% Confiável
+                            </div>
+                        </div>
+                        <div class="btn-comprar-wrapper">
+                            <a href="https://app.keedpay.com.br/link/probiotico" class="btn-comprar">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enzimas Digestivas -->
+                <div class="produto">
+                    <div class="produto-imagem">
+                        <img src="https://vivernatural.com.br/wp-content/uploads/2023/12/Mockup-Viver-Natural-Enzimas-1.png"
+                            alt="Enzimas Digestivas" loading="lazy">
+                    </div>
+                    <div class="produto-info">
+                        <div class="produto-categoria">Enzimas</div>
+                        <h3 class="produto-titulo">Digestão Saudável</h3>
+                        <div class="produto-preco-container">
+                            <div class="produto-parcela">12x sem juros de</div>
+                            <div class="produto-preco">R$ 14,92</div>
+                            <div class="preco-avista">ou <strong>R$ 179,00</strong> à vista</div>
+                        </div>
+                        <div class="beneficios">
+                            <div class="beneficio-item">
+                                <i class="fas fa-truck"></i>
+                                Frete Grátis
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Compra Segura
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-lock"></i>
+                                Dados Protegidos
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-check-circle"></i>
+                                100% Confiável
+                            </div>
+                        </div>
+                        <div class="btn-comprar-wrapper">
+                            <a href="https://app.keedpay.com.br/link/enzimas" class="btn-comprar">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categoria: Energia e Disposição -->
+    <section class="categoria-produtos">
+        <div class="container">
+            <div class="categoria-header">
+                <h3 class="categoria-titulo">Energia e Disposição</h3>
+                <p class="categoria-descricao">Suplementos naturais para mais energia no dia a dia</p>
+            </div>
+            <div class="produtos">
+                <!-- Vitamina B12 -->
+                <div class="produto">
+                    <div class="produto-imagem">
+                        <img src="https://vivernatural.com.br/wp-content/uploads/2023/12/Mockup-Viver-Natural-B12-1.png"
+                            alt="Vitamina B12" loading="lazy">
+                    </div>
+                    <div class="produto-info">
+                        <div class="produto-categoria">B12</div>
+                        <h3 class="produto-titulo">Energia Vital</h3>
+                        <div class="produto-preco-container">
+                            <div class="produto-parcela">12x sem juros de</div>
+                            <div class="produto-preco">R$ 12,42</div>
+                            <div class="preco-avista">ou <strong>R$ 149,00</strong> à vista</div>
+                        </div>
+                        <div class="beneficios">
+                            <div class="beneficio-item">
+                                <i class="fas fa-truck"></i>
+                                Frete Grátis
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Compra Segura
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-lock"></i>
+                                Dados Protegidos
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-check-circle"></i>
+                                100% Confiável
+                            </div>
+                        </div>
+                        <div class="btn-comprar-wrapper">
+                            <a href="https://app.keedpay.com.br/link/b12" class="btn-comprar">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multivitamínico -->
+                <div class="produto">
+                    <div class="produto-imagem">
+                        <img src="https://vivernatural.com.br/wp-content/uploads/2023/12/Mockup-Viver-Natural-Multi-1.png"
+                            alt="Multivitamínico" loading="lazy">
+                    </div>
+                    <div class="produto-info">
+                        <div class="produto-categoria">Multivitamínico</div>
+                        <h3 class="produto-titulo">Energia Completa</h3>
+                        <div class="produto-preco-container">
+                            <div class="produto-parcela">12x sem juros de</div>
+                            <div class="produto-preco">R$ 15,75</div>
+                            <div class="preco-avista">ou <strong>R$ 189,00</strong> à vista</div>
+                        </div>
+                        <div class="beneficios">
+                            <div class="beneficio-item">
+                                <i class="fas fa-truck"></i>
+                                Frete Grátis
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-shield-alt"></i>
+                                Compra Segura
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-lock"></i>
+                                Dados Protegidos
+                            </div>
+                            <div class="beneficio-item">
+                                <i class="fas fa-check-circle"></i>
+                                100% Confiável
+                            </div>
+                        </div>
+                        <div class="btn-comprar-wrapper">
+                            <a href="https://app.keedpay.com.br/link/multi" class="btn-comprar">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

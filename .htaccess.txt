@@ -1,0 +1,76 @@
+# Ativar o motor de reescrita
+RewriteEngine On
+
+# Forçar HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirecionar www para non-www
+RewriteCond %{HTTP_HOST} ^www\.parceiros\.marketingnaveia7\.com [NC]
+RewriteRule ^(.*)$ https://parceiros.marketingnaveia7.com/$1 [L,R=301]
+
+# Proteção contra listagem de diretórios
+Options -Indexes
+
+# Proteção do diretório admin
+<Directory "/admin">
+    AuthType Basic
+    AuthName "Área Restrita"
+    Require valid-user
+    
+    # Bloquear acesso direto a arquivos PHP
+    <Files "*.php">
+        Order Deny,Allow
+        Deny from all
+    </Files>
+</Directory>
+
+# Compressão GZIP
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Cache do navegador
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType text/html "access plus 1 day"
+</IfModule>
+
+# Proteção contra ataques XSS e outros
+<IfModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Bloquear acesso a arquivos sensíveis
+<FilesMatch "^(\.htaccess|\.htpasswd|\.git|\.env|\.json|\.lock|composer\.(json|lock))$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Página de erro personalizada
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
+
+# Limitar tamanho de upload
+php_value upload_max_filesize 10M
+php_value post_max_size 10M 
